@@ -14,7 +14,7 @@ import json
 class ClientInterface:
     def __init__(self,idplayer='1'):
         self.idplayer=idplayer
-        self.server_address=('192.168.1.65',5006)
+        self.server_address=('192.168.1.84',5006)
 
     def send_command(self,command_str=""):
         global server_address
@@ -158,11 +158,10 @@ class MyApp(App):
         
         root.add_widget(buttons1)
         root.add_widget(widget1)
-        root.add_widget(widget2)
-        root.add_widget(buttons2)
-        root.add_widget(widget3)
         root.add_widget(buttons3)
-
+        root.add_widget(widget3)
+        root.add_widget(buttons2)
+        root.add_widget(widget2)
 
         Clock.schedule_interval(self.refresh,1/60)
 
