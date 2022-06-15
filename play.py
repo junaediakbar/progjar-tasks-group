@@ -18,7 +18,7 @@ play=True
 class ClientInterface:
     def __init__(self,idplayer='1'):
         self.idplayer=idplayer
-        self.server_address=('192.168.1.84',5006)
+        self.server_address=('192.168.1.66',5007)
 
     def send_command(self,command_str=""):
         global server_address
@@ -121,7 +121,7 @@ class Player:
        
         if (self.current_y >=405) :
             self.client_interface.set_location(self.current_x,405)
-            play=False
+            # play=False
 
 
     def inisialiasi(self):

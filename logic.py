@@ -17,6 +17,8 @@ class PlayerServerInterface:
         x = params[1]
         y = params[2]
         try:
+            if (int(self.players['1'].split(',')[1]) >= 400 or int(self.players['2'].split(',')[1]) >= 400 or int(self.players['3'].split(',')[1]) >= 400) :
+                return dict(status='ERROR')
             self.players[pnum]=f"{x},{y}"
             self.players.sync()
             return dict(status='OK', player=pnum)
