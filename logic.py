@@ -9,8 +9,8 @@ class PlayerServerInterface:
     def __init__(self):
         self.players = shelve.open('g.db',writeback=True)
         self.players['1']= "0,100"
-        self.players['2']= "600,100"
-        self.players['3']= "300,100"
+        self.players['2']= "270,100"
+        self.players['3']= "540,100"
 
     def set_location(self,params=[]):
         pnum = params[0]
@@ -18,7 +18,7 @@ class PlayerServerInterface:
         y = params[2]
         try:
             if (int(self.players['1'].split(',')[1]) >= 400 or int(self.players['2'].split(',')[1]) >= 400 or int(self.players['3'].split(',')[1]) >= 400) :
-                return dict(status='ERROR')
+                return dict(status='FINISH')
             self.players[pnum]=f"{x},{y}"
             self.players.sync()
             return dict(status='OK', player=pnum)

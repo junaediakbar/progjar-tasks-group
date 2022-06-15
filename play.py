@@ -128,7 +128,7 @@ class Player:
         wid = self.widget
         btn_up = Button(text='up',on_press=partial(self.move, wid, 'up'))
 
-        self.buttons = BoxLayout(size_hint=(1, None), height=50)
+        self.buttons = BoxLayout(size_hint=(3, None), height=50)
         self.buttons.add_widget(btn_up)
 
 
@@ -166,10 +166,10 @@ class MyApp(App):
         
         root.add_widget(buttons1)
         root.add_widget(widget1)
-        root.add_widget(buttons3)
-        root.add_widget(widget3)
         root.add_widget(buttons2)
         root.add_widget(widget2)
+        root.add_widget(buttons3)
+        root.add_widget(widget3)
 
         Clock.schedule_interval(self.refresh,1/60)
 
