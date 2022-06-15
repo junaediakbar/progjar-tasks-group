@@ -13,12 +13,11 @@ import socket
 import logging
 import json
 
-play=True 
 
 class ClientInterface:
     def __init__(self,idplayer='1'):
         self.idplayer=idplayer
-        self.server_address=('192.168.1.66',5007)
+        self.server_address=('192.168.1.65',5007)
 
     def send_command(self,command_str=""):
         global server_address
@@ -106,23 +105,16 @@ class Player:
             with wid.canvas:
                 Color(r,g,b)
                 Rectangle(pos=(self.current_x,self.current_y), size=(200, 200))
-    
+
         else :
               with wid.canvas:
                 Color(r,g,b)
                 Line(rectangle=(self.current_x,self.current_y, 200, 200))
 
     def move(self,wid, arah,*kwargs):
-
-        global play
-        if (arah=='up' and play == True):
+        if (arah=='up'):
             self.current_y = self.current_y + 10
         self.client_interface.set_location(self.current_x,self.current_y)
-       
-        if (self.current_y >=405) :
-            self.client_interface.set_location(self.current_x,405)
-            # play=False
-
 
     def inisialiasi(self):
         wid = self.widget
@@ -130,7 +122,6 @@ class Player:
 
         self.buttons = BoxLayout(size_hint=(3, None), height=50)
         self.buttons.add_widget(btn_up)
-
 
 
 class MyApp(App):
@@ -141,8 +132,7 @@ class MyApp(App):
             i.draw()
 
     def build(self):
-    
-    
+
         p1 = Player('1',1,0,0)
         p1.set_xy(100,100)
         widget1 = p1.get_widget()
@@ -155,7 +145,8 @@ class MyApp(App):
         widget2 = p2.get_widget()
         buttons2 = p2.get_buttons()
         self.players.append(p2)
-        
+
+
         p3 = Player('3',0,0,1)
         p3.set_xy(150,150)
         widget3 = p3.get_widget()
@@ -174,6 +165,7 @@ class MyApp(App):
         Clock.schedule_interval(self.refresh,1/60)
 
         return root
+
 
 if __name__ == '__main__':
     MyApp().run()

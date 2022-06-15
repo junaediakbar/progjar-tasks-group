@@ -32,8 +32,6 @@ class PlayerServerInterface:
         except Exception as ee:
             return dict(status='ERROR')
 
-
-
 if __name__=='__main__':
     p = PlayerServerInterface()
     p.set_location(['1',100,100])

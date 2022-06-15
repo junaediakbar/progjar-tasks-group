@@ -6,6 +6,8 @@ from kivy.app import App
 from kivy.graphics import Color, Rectangle, Line
 from functools import partial
 from kivy.clock import  Clock
+from kivy.core.text import Label as CoreLabel
+
 
 import socket
 import logging
@@ -98,27 +100,15 @@ class MyApp(App):
         buttons2 = p2.get_buttons()
         self.players.append(p2)
 
-#        p3 = Player('3',0,1,0)
-#        p3.set_xy(150,150)
-#        widget3 = p3.get_widget()
-#        buttons3 = p3.get_buttons()
-#        self.players.append(p3)
-
-#        p4 = Player('4',0,1,1)
-#        p4.set_xy(150,150)
-#        widget4 = p4.get_widget()
-#        buttons4 = p4.get_buttons()
-#        self.players.append(p4)
 
         root = BoxLayout(orientation='horizontal')
         root.add_widget(widget1)
         root.add_widget(buttons1)
         root.add_widget(widget2)
         root.add_widget(buttons2)
-#        root.add_widget(widget3)
-#        root.add_widget(buttons3)
-#        root.add_widget(widget4)
-#        root.add_widget(buttons4)
+
+        my_label = CoreLabel()
+        my_label.text = 'hello'
 
 
         Clock.schedule_interval(self.refresh,1/60)
