@@ -1,0 +1,42 @@
+FILE SERVER
+TUJUAN: melayani client dalam request file server
+
+ATURAN PROTOKOL:
+- client harus mengirimkan request dalam bentuk string
+- string harus dalam format
+  REQUEST spasi PARAMETER
+- PARAMETER dapat berkembang menjadi PARAMETER1 spasi PARAMETER2 dan seterusnya
+
+REQUEST YANG DILAYANI:
+- informasi umum:
+  * Jika request tidak dikenali akan menghasilkan pesan
+    - status: ERROR
+    - data: request tidak dikenali
+  * Semua result akan diberikan dalam bentuk JSON dan diakhiri
+    dengan character ascii code #13#10#13#10 atau "\r\n\r\n"
+
+SET LOCATION
+* TUJUAN: untuk mengupdate data lokasi player sesuai idnya dan pengecekan status finish
+* PARAMETER: 
+  - PARAMETER1: id player
+  - PARAMETER2: posisi x
+  - PARAMETER3: posisi y
+* RESULT:
+- BERHASIL:
+  - status: OK
+  - player: player dengan id [id player]
+
+  - status: FINISH
+- GAGAL:
+  - status: ERROR
+
+GET LOCATION
+* TUJUAN: untuk mendapatkan data lokasi player sesuai idnya
+* PARAMETER:
+  - PARAMETER1: id player
+* RESULT:
+- BERHASIL:
+  - status: OK
+  - location: data lokasi player dengan id [id player]
+- GAGAL:
+  - status: ERROR
