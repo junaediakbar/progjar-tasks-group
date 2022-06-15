@@ -30,7 +30,7 @@ class ProcessTheClient(threading.Thread):
 
 
 class Server(threading.Thread):
-    def __init__(self,ipaddress='192.168.0.131',port=5005):
+    def __init__(self,ipaddress='192.168.1.66',port=5006):
         self.ipinfo=(ipaddress,port)
         self.the_clients = []
         self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,7 +51,7 @@ class Server(threading.Thread):
 
 
 def main():
-    svr = Server(ipaddress='192.168.0.131',port=5005)
+    svr = Server(ipaddress='192.168.1.66',port=5006)
     svr.start()
 
 

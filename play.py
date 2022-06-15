@@ -14,7 +14,7 @@ import json
 class ClientInterface:
     def __init__(self,idplayer='1'):
         self.idplayer=idplayer
-        self.server_address=('192.168.0.128',5005)
+        self.server_address=('192.168.1.66',5006)
 
     def send_command(self,command_str=""):
         global server_address
@@ -78,7 +78,6 @@ class Player:
         self.buttons = None
         self.client_interface = ClientInterface(self.idplayer)
         self.inisialiasi()
-        #self.draw(self.widget,self.warna_r,self.warna_g,self.warna_b)
     def get_client_interface(self):
         return self.client_interface
     def get_idplayer(self):
@@ -86,7 +85,6 @@ class Player:
     def set_xy(self,x=100,y=100):
         self.current_x = x
         self.current_y = y
-        #self.draw(self.widget, self.warna_r, self.warna_g, self.warna_b)
 
     def get_widget(self):
         return self.widget
@@ -105,30 +103,19 @@ class Player:
             Line(rectangle=(self.current_x,self.current_y, 200, 200))
 
     def move(self,wid, arah,*kwargs):
-        #self.draw(wid,0,0,0)
-        if (arah=='right'):
-            self.current_x = self.current_x + 5
-        if (arah=='left'):
-            self.current_x = self.current_x - 5
         if (arah=='up'):
             self.current_y = self.current_y + 5
-        if (arah=='down'):
-            self.current_y = self.current_y - 5
         self.client_interface.set_location(self.current_x,self.current_y)
-        #self.draw(wid,self.warna_r,self.warna_g,self.warna_b)
+        if (self.current_y == 120) :
+            self.current_y == 0
+            self.client_interface.set_location(self.current_x,self.current_y)
 
     def inisialiasi(self):
         wid = self.widget
-        btn_left = Button(text='left',on_press=partial(self.move, wid, 'left'))
         btn_up = Button(text='up',on_press=partial(self.move, wid, 'up'))
-        btn_down = Button(text='down',on_press=partial(self.move, wid, 'down'))
-        btn_right = Button(text='right',on_press=partial(self.move, wid, 'right'))
 
         self.buttons = BoxLayout(size_hint=(1, None), height=50)
-        self.buttons.add_widget(btn_left)
         self.buttons.add_widget(btn_up)
-        self.buttons.add_widget(btn_down)
-        self.buttons.add_widget(btn_right)
 
 
 
@@ -154,20 +141,13 @@ class MyApp(App):
         buttons2 = p2.get_buttons()
         self.players.append(p2)
 
-        p3 = Player('3',0,0,1)
-        p3.set_xy(150,150)
-        widget3 = p3.get_widget()
-        buttons3 = p3.get_buttons()
-        self.players.append(p3)
-
 
         root = BoxLayout(orientation='horizontal')
-        root.add_widget(widget1)
+        
         root.add_widget(buttons1)
+        root.add_widget(widget1)
         root.add_widget(widget2)
         root.add_widget(buttons2)
-        root.add_widget(widget3)
-        root.add_widget(buttons3)
 
 
         Clock.schedule_interval(self.refresh,1/60)

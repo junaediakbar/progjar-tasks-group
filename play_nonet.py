@@ -50,29 +50,29 @@ class Player:
 
     def move(self,wid, arah,*kwargs):
         #self.draw(wid,0,0,0)
-        if (arah=='right'):
-            self.current_x = self.current_x + 10
-        if (arah=='left'):
-            self.current_x = self.current_x - 10
+        # if (arah=='right'):
+        #     self.current_x = self.current_x + 10
+        # if (arah=='left'):
+        #     self.current_x = self.current_x - 10
         if (arah=='up'):
             self.current_y = self.current_y + 10
-        if (arah=='down'):
-            self.current_y = self.current_y - 10
+        # if (arah=='down'):
+        #     self.current_y = self.current_y - 10
         #self.client_interface.set_location(self.current_x,self.current_y)
         #self.draw(wid,self.warna_r,self.warna_g,self.warna_b)
 
     def inisialiasi(self):
         wid = self.widget
-        btn_left = Button(text='left',on_press=partial(self.move, wid, 'left'))
+        # btn_left = Button(text='left',on_press=partial(self.move, wid, 'left'))
         btn_up = Button(text='up',on_press=partial(self.move, wid, 'up'))
-        btn_down = Button(text='down',on_press=partial(self.move, wid, 'down'))
-        btn_right = Button(text='right',on_press=partial(self.move, wid, 'right'))
+        # btn_down = Button(text='down',on_press=partial(self.move, wid, 'down'))
+        # btn_right = Button(text='right',on_press=partial(self.move, wid, 'right'))
 
         self.buttons = BoxLayout(size_hint=(1, None), height=50)
-        self.buttons.add_widget(btn_left)
+        # self.buttons.add_widget(btn_left)
         self.buttons.add_widget(btn_up)
-        self.buttons.add_widget(btn_down)
-        self.buttons.add_widget(btn_right)
+        # self.buttons.add_widget(btn_down)
+        # self.buttons.add_widget(btn_right)
 
 
 

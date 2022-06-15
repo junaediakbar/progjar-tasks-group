@@ -4,13 +4,12 @@ import base64
 from glob import glob
 import shelve
 
-#asumsi, hanya ada player 1, 2 , 3
+#asumsi, hanya ada player 1, 2
 class PlayerServerInterface:
     def __init__(self):
         self.players = shelve.open('g.db',writeback=True)
-        self.players['1']= "100,100"
-        self.players['2']= "100,100"
-        # self.players['3']= "100,100"
+        self.players['1']= "0,100"
+        self.players['2']= "600,100"
 
     def set_location(self,params=[]):
         pnum = params[0]
