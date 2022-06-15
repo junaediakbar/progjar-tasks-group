@@ -155,6 +155,12 @@ class MyApp(App):
         widget2 = p2.get_widget()
         buttons2 = p2.get_buttons()
         self.players.append(p2)
+        
+        p3 = Player('3',0,0,1)
+        p3.set_xy(150,150)
+        widget3 = p3.get_widget()
+        buttons3 = p3.get_buttons()
+        self.players.append(p3)
 
         root = BoxLayout(orientation='horizontal')
         
@@ -162,6 +168,8 @@ class MyApp(App):
         root.add_widget(widget1)
         root.add_widget(widget2)
         root.add_widget(buttons2)
+        root.add_widget(widget3)
+        root.add_widget(buttons3)
 
 
         Clock.schedule_interval(self.refresh,1/60)
