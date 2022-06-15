@@ -14,7 +14,7 @@ import json
 class ClientInterface:
     def __init__(self,idplayer='1'):
         self.idplayer=idplayer
-        self.server_address=('192.168.1.66',5006)
+        self.server_address=('192.168.1.65',5006)
 
     def send_command(self,command_str=""):
         global server_address
@@ -98,17 +98,24 @@ class Player:
         g = self.warna_g
         b = self.warna_b
 
-        with wid.canvas:
-            Color(r,g,b)
-            Line(rectangle=(self.current_x,self.current_y, 200, 200))
+        if (self.current_y >=400) :
+            with wid.canvas:
+                Color(r,g,b)
+                Rectangle(pos=(self.current_x,self.current_y), size=(200, 200))
+    
+        else :
+              with wid.canvas:
+                Color(r,g,b)
+                Line(rectangle=(self.current_x,self.current_y, 200, 200))
 
     def move(self,wid, arah,*kwargs):
         if (arah=='up'):
-            self.current_y = self.current_y + 5
+            self.current_y = self.current_y + 10
         self.client_interface.set_location(self.current_x,self.current_y)
-        if (self.current_y == 120) :
-            self.current_y == 0
-            self.client_interface.set_location(self.current_x,self.current_y)
+       
+        if (self.current_y >=405) :
+            self.client_interface.set_location(self.current_x,405)
+
 
     def inisialiasi(self):
         wid = self.widget
@@ -140,7 +147,6 @@ class MyApp(App):
         widget2 = p2.get_widget()
         buttons2 = p2.get_buttons()
         self.players.append(p2)
-
 
         root = BoxLayout(orientation='horizontal')
         
