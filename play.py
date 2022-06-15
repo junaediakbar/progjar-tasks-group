@@ -1,3 +1,5 @@
+from glob import glob
+from kivy.core.text import Label as CoreLabel
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
@@ -10,6 +12,8 @@ from kivy.clock import  Clock
 import socket
 import logging
 import json
+
+play=True 
 
 class ClientInterface:
     def __init__(self,idplayer='1'):
@@ -109,12 +113,15 @@ class Player:
                 Line(rectangle=(self.current_x,self.current_y, 200, 200))
 
     def move(self,wid, arah,*kwargs):
-        if (arah=='up'):
+
+        global play
+        if (arah=='up' and play == True):
             self.current_y = self.current_y + 10
         self.client_interface.set_location(self.current_x,self.current_y)
        
         if (self.current_y >=405) :
             self.client_interface.set_location(self.current_x,405)
+            play=False
 
 
     def inisialiasi(self):
@@ -134,7 +141,8 @@ class MyApp(App):
             i.draw()
 
     def build(self):
-
+    
+    
         p1 = Player('1',1,0,0)
         p1.set_xy(100,100)
         widget1 = p1.get_widget()
